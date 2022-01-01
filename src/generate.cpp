@@ -127,3 +127,56 @@ void printObjects(vector<object*> objects) {
 		printf("%03d    %20s   %03d   %03d \n", i++, obj->name, obj->cost, obj->weight);
 	}
 }
+
+/**
+ * Function analyze objects population and print:
+ *  - cost min, max
+ *  - weight min, max
+ *  - number of objects in cost
+ *  - number of objects in width
+ *
+ * @param objects	objects list
+ */
+void analizeObjects(vector<object*> objects) {
+	int costMin = COST_MAX;
+	int costMax = COST_MIN;
+	int weightMin = WEIGHT_MAX;
+	int weightMax = WEIGHT_MIN;
+
+
+	int costCnt[COST_MAX] = { 0 };
+	int weightCnt[WEIGHT_MAX] = { 0 };
+
+	for (object *obj : objects) {
+		// from population find min and max cost and weight
+		if (costMin > obj->cost)
+			costMin = obj->cost;
+		if (costMax < obj->cost)
+			costMax = obj->cost;
+
+		if (weightMin > obj->weight)
+			weightMin = obj->weight;
+		if (weightMax < obj->weight)
+			weightMax = obj->weight;
+
+		costCnt[obj->cost]++;
+		weightCnt[obj->weight]++;
+	}
+
+	printf("Cost   min / max ....... %03d  %03d \n", costMin, costMax);
+	printf("Weight min / max ....... %03d  %03d \n", weightMin, weightMax);
+
+	printf("Cost diagram cost - count\n\n");
+	for (int i = 0; i < COST_MAX; i++) {
+		if (costCnt[i] > 0)
+			printf("%03d    %03d \n", i, costCnt[i]);
+	}
+
+	printf("Weight diagram weight - count\n\n");
+	for (int i = 0; i < WEIGHT_MAX; i++) {
+		if (weightCnt[i] > 0)
+			printf("%03d    %03d \n", i, weightCnt[i]);
+	}
+
+
+}

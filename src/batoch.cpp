@@ -3,7 +3,7 @@
 // Author      : MarS
 // Version     :
 // Copyright   :
-// Description : Hello World in C++, Ansi-style
+// Description : AI - simple test app. Comparison between force and genetic .
 //============================================================================
 
 #include <iostream>
@@ -22,6 +22,8 @@ int main(int argc, char **argv) {
 	
 	string parameter;
 	string paramFileObjectPath;
+	string print;
+	string analyze;
 
 	parameter = getParameter(argc, argv, "--help");
 	if (parameter.length()) {
@@ -30,6 +32,9 @@ int main(int argc, char **argv) {
 	}
 
 	paramFileObjectPath = getParameter(argc, argv, "^[a-zA-Z0-9/._][a-zA-Z0-9/._-]*");
+
+	print = getParameter(argc, argv, "--print");
+	analyze = getParameter(argc, argv, "--analyze");
 
 	parameter = getParameter(argc, argv, "--generate=");
 	if (parameter.length()) {
@@ -62,8 +67,10 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-
-	printObjects(objectsIn);
+	if (print.length())
+		printObjects(objectsIn);
+	if (analyze.length())
+		analizeObjects(objectsIn);
 
 	cout << "Application finish" << endl;
 

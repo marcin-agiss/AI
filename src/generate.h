@@ -34,6 +34,7 @@ void storeObjects(string storeFile, vector<object*> objects);
 void freeAllObjects(vector<object*> objects);
 vector<object*> loadObjects(string fileName);
 void printObjects(vector<object*> objects);
+void analizeObjects(vector<object*> objects);
 
 
 #endif /* GENERATE_H_ */
